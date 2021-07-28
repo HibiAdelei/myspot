@@ -29,6 +29,10 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.get('/profile/:id', (req, res) => {
+  res.render('profile', { title: "User's Profile" });
+})
+
 router.get('/login', (req, res) => {
   res.render('login', { title: 'Log-In Page' });
 });
