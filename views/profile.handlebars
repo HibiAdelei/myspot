@@ -1,51 +1,29 @@
 <div class="container-sm">
-    <div class="text-right">
-        <button type="button" class="btn mx-auto btn-outline-danger logout-button"> Logout</button>
+    <div class="text-center">
+        {{#if matchesSessionUser}}
+            <button type="button" class="btn mx-auto btn-outline-danger logout-button">Logout</button>
+        {{/if}}
     </div>
-    <h1 class="text-break">[UserUserUser1234]'s Profile</h1>
+    <h1 class="text-break">{{user.username}}'s Profile</h1>
     <h4>About</h4>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-        Laborum expedita quis, reiciendis autem voluptatem repellat 
-        molestiae fuga pariatur adipisci dolorem aut rem provident 
-        incidunt, vitae impedit! Voluptate soluta modi sapiente.</p>
+    <p>{{user.bio}}</p>
     
-    <h4>[UserUserUser1234]'s Spots</h4>
+    <h4>{{user.username}}'s Spots</h4>
     <div class="row justify-content-center">
+        {{#each spots as |spot|}}
         <div class="col-sm-12 col-lg-6 my-2">
             <div class="card">
                 <div class="card-header">
+                    {{!-- TODO: Use maps.js to render this static Google Map --}}
                     Static Google Maps
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title">Spot Title</h5>
-                    <p class="card-text">Some kind of description about the spot and why it's cool.</p>
-                    <a href="#" class="btn btn-primary">Details</a>
+                    <h5 class="card-title">{{spot.title}}</h5>
+                    <p class="card-text">{{spot.description}}</p>
+                    <a href="/spot/{{spot.id}}" class="btn btn-primary">Details</a>
                 </div>
             </div>
         </div>
-        <div class="col-sm-12 col-lg-6 my-2">
-            <div class="card">
-                <div class="card-header">
-                    Static Google Maps
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">Spot Title</h5>
-                    <p class="card-text">Some kind of description about the spot and why it's cool.</p>
-                    <a href="#" class="btn btn-primary">Details</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-12 col-lg-6 my-2">
-            <div class="card">
-                <div class="card-header">
-                    Static Google Maps
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">Spot Title</h5>
-                    <p class="card-text">Some kind of description about the spot and why it's cool.</p>
-                    <a href="#" class="btn btn-primary">Details</a>
-                </div>
-            </div>
-        </div>
+        {{/each}}
     </div>
 </div>

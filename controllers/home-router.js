@@ -1,5 +1,5 @@
-const router = require('express').Router();
-const { User } = require('../models');
+const router = require("express").Router();
+const { User } = require("../models");
 
 // use withAuth middleware to redirect from protected routes.
 // const withAuth = require("../util/withAuth");
@@ -9,36 +9,38 @@ const { User } = require('../models');
 //   // ...
 // });
 
-router.get('/', async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     let user;
     if (req.session.isLoggedIn) {
       user = await User.findByPk(req.session.userId, {
-        exclude: ['password'],
+        exclude: ["password"],
         raw: true,
       });
     }
-    res.render('home', {
-      title: 'Home Page',
+    res.render("home", {
+      title: "Home Page",
       isLoggedIn: req.session.isLoggedIn,
       user,
     });
   } catch (error) {
     console.error(error);
-    res.status(500).send('⛔ Uh oh! An unexpected error occurred.');
+    res.status(500).send("⛔ Uh oh! An unexpected error occurred.");
   }
 });
 
-router.get('/profile/:id', (req, res) => {
-  res.render('profile', { title: "User's Profile" });
-})
-
-router.get('/login', (req, res) => {
-  res.render('login', { title: 'Log-In Page' });
+router.get("/profile/:id", (req, res) => {
+  // When rendering, check if the :id matches the user id of the current session
+  // If so, display a logout button
+  res.render("profile", { title: "User's Profile" });
 });
 
-router.get('/signup', (req, res) => {
-  res.render('signup', { title: 'Sign-Up Page' });
+router.get("/login", (req, res) => {
+  res.render("login", { title: "Log-In Page" });
+});
+
+router.get("/signup", (req, res) => {
+  res.render("signup", { title: "Sign-Up Page" });
 });
 
 module.exports = router;
