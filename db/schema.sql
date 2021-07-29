@@ -1,0 +1,3 @@
+DROP DATABASE IF EXISTS myspot_db;
+
+CREATE DATABASE myspot_db;
