@@ -1,0 +1,9 @@
+.bio-form-success::after {
+  content: "Bio successfully updated.";
+  color: green;
+}
+
+.bio-form-error::after {
+  content: "Error updating user bio.";
+  color: red;
+}
