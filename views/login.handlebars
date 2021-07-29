@@ -1,10 +1,11 @@
-<h1>Login</h1>
-<form class='login-form'>
-  <label for='username'>Username</label><br />
-  <input type='text' name='username' id='username' /><br />
-  <label for='password'>Password</label><br />
-  <input type='password' name='password' id='password' /><br />
-  <button class='btn' type='submit'>Submit</button>
-</form>
-<p>Don't have an account yet? <a href='/signup'>Sign Up Here</a></p>
+<div class="d-flex h-100">
+  <div class="row align-self-center mx-auto">
+    <form class="mx-5"><h1 class="h3 mb-3 font-weight-normal text-center">Login</h1>
+      <input type="text" id="username" class="form-control" placeholder="Username">
+      <input type="password" id="password" class="form-control" placeholder="Password">
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      <p>Don't have an account yet? <a href='/signup'>Sign Up Here</a></p>
+    </form>
+  </div>
+</div>
 <script src='/js/login.js'></script>
