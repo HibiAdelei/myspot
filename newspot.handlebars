@@ -1,0 +1,20 @@
+<h1>New Spot</h1>
+<div id="map" style="width:50%;height:50%;"></div>
+<form class='tag-form'>
+    <label for='title'>Title</label><br />
+    <input type='text' name='title' id='title' /><br />
+    <label for='latitude'>Latitude</label><br />
+    <input type='number' name='latitude' id='latitude' step="any" /><br />
+    <label for='longtitude'>Longtitude</label><br />
+    <input type='number' name='longtitude' id='longtitude' step="any" /><br />
+    <label for='desc'>Description</label><br />
+    <input type='text' name='desc' id='desc' /><br />
+    <label for="tags">tags</label><br />
+    <select name="spots" id="spots" multiple>
+        <option value="amusement">Amusement</option>
+        <option value="greenery">Greenery</option>
+        <option value="restaurant">Restaurant</option>
+        <option value="landmark">Landmark</option>
+    </select><br />
+    <button class='btn' type='save' id='saveBtn'>Save</button>
+</form>
