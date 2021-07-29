@@ -29,6 +29,18 @@ router.get("/", async (req, res) => {
   }
 });
 
+// Route to display a user's own profile
+router.get("/profile", async (req, res) => {
+  // If a user is logged in, display profile page with thier id
+  if (req.session.isLoggedIn) {
+    res.redirect(`/profile/${req.session.userId}`);
+    return;
+  }
+
+  // Otherwise, prompt to log in
+  res.redirect(`/login`);
+});
+
 // Route to display a user's profile
 router.get("/profile/:id", async (req, res) => {
   try {
@@ -60,7 +72,7 @@ router.get("/profile/:id", async (req, res) => {
 
     // Check if the :id matches the user id of the current session
     // If so, display a logout button
-    const matchesSessionUser = req.session.user_id === req.params.id;
+    const matchesSessionUser = req.session.userId === req.params.id;
 
     res.render("profile", {
       title: `${user.username}'s Profile`,
