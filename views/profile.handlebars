@@ -6,7 +6,17 @@
     </div>
     <h1 class="text-break">{{user.username}}'s Profile</h1>
     <h4>About</h4>
-    <p>{{user.bio}}</p>
+    {{#if matchesSessionUser}}
+        <form class="bio-form">
+            <div class="form-group">
+                <label for="User Bio"></label>
+                <textarea class="form-control" id="user-bio-text" rows="4"></textarea>
+            </div>
+                <button type="submit" class="btn btn-outline-info">Save</button>
+        </form>
+    {{else}}
+        <p>{{user.bio}}</p>
+    {{/if}}
     
     <h4>{{user.username}}'s Spots</h4>
     <div class="row justify-content-center">
@@ -27,3 +37,5 @@
         {{/each}}
     </div>
 </div>
+
+<script src='/js/profile.js'></script>
