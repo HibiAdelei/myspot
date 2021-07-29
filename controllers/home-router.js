@@ -2,7 +2,7 @@ const router = require("express").Router();
 const { User, Spot, Tag, SpotTag } = require("../models");
 
 // use withAuth middleware to redirect from protected routes.
-// const withAuth = require("../util/withAuth");
+const withAuth = require("../util/withAuth");
 
 // example of a protected route
 // router.get("/users-only", withAuth, (req, res) => {
@@ -30,15 +30,9 @@ router.get("/", async (req, res) => {
 });
 
 // Route to display a user's own profile
-router.get("/profile", async (req, res) => {
-  // If a user is logged in, display profile page with thier id
-  if (req.session.isLoggedIn) {
-    res.redirect(`/profile/${req.session.userId}`);
-    return;
-  }
-
-  // Otherwise, prompt to log in
-  res.redirect(`/login`);
+router.get("/profile", withAuth, async (req, res) => {
+  // Redirect to user's profile page with thier id
+  res.redirect(`/profile/${req.session.userId}`);
 });
 
 // Route to display a user's profile
