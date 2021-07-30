@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const Sequelize = require("sequelize");
 const { User, Spot, Tag, SpotTag } = require("../models");
 
 // use withAuth middleware to redirect from protected routes.
@@ -18,11 +19,36 @@ router.get("/", async (req, res) => {
         raw: true,
       });
     }
-    res.render("home", {
-      title: "Home Page",
+
+    // Get a random spot from sequelize
+    const spot = await Spot.findAll({
+      order: Sequelize.literal("rand()"),
+      limit: 1,
+      include: [
+        {
+          model: User,
+          required: true,
+        },
+        {
+          model: Tag,
+          through: {
+            model: SpotTag,
+            attributes: [],
+          },
+          as: "tags",
+        },
+      ],
+    });
+
+    const data = {
+      title: "MySpot",
       isLoggedIn: req.session.isLoggedIn,
       user,
-    });
+      spot,
+    };
+    console.log(data);
+
+    res.render("home", data);
   } catch (error) {
     console.error(error);
     res.status(500).send("⛔ Uh oh! An unexpected error occurred.");
