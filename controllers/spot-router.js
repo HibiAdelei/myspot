@@ -16,10 +16,7 @@ router.get("/:id"),
       }
 
       // Get a spot from sequelize
-      const spot = await Spot.findAll({
-        where: {
-          id: req.params.id,
-        },
+      const spot = await Spot.findByPk(req.params.id, {
         include: [
           {
             model: User,
@@ -42,7 +39,6 @@ router.get("/:id"),
         user,
         spot,
       };
-      console.log(data);
 
       res.render("spot", data);
     } catch (error) {

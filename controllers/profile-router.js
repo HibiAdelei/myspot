@@ -37,18 +37,25 @@ router.get("/:id", async (req, res) => {
         required: true,
       },
     });
-    const userSpots = userSpotsData.get({ plain: true });
+
+    // Serialize spot data
+    const userSpots = userSpotsData.map((item) => {
+      return item.get({ plain: true });
+    });
 
     // Check if the :id matches the user id of the current session
     // If so, display a logout button
     const matchesSessionUser = req.session.userId === req.params.id;
 
-    res.render("profile", {
+    const data = {
       title: `${user.username}'s Profile`,
       user,
       spots: userSpots,
       matchesSessionUser,
-    });
+    };
+    console.log(data);
+
+    res.render("profile", data);
   } catch (error) {
     res.status(500).json(error);
   }
