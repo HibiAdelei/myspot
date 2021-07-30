@@ -17,7 +17,7 @@ router.get("/", async (req, res) => {
     }
 
     // Get a random spot from sequelize
-    const spot = await Spot.findAll({
+    const spotData = await Spot.findAll({
       order: Sequelize.literal("rand()"),
       limit: 1,
       include: [
@@ -35,6 +35,8 @@ router.get("/", async (req, res) => {
         },
       ],
     });
+    // Serialize spot data
+    const spot = spotData[0].get({ plain: true });
 
     const data = {
       title: "MySpot",

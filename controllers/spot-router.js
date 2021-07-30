@@ -50,3 +50,5 @@ router.get("/:id"),
       res.status(500).send("⛔ Uh oh! An unexpected error occurred.");
     }
   };
+
+module.exports = router;
