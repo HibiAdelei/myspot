@@ -39,3 +39,4 @@ SpotTag.init(
 );
 
 module.exports = SpotTag;
+
