@@ -1,4 +1,4 @@
-const { spottag } = require('../models');
+const { SpotTag } = require('../models');
 
 const SpotTagData = [
     {
@@ -35,6 +35,6 @@ const SpotTagData = [
     },
 ];
 
-const seedSpotTag = () => spottag.bulkCreate(SpotTagData);
+const seedSpotTag = () => SpotTag.bulkCreate(SpotTagData);
 
 module.exports = seedSpotTag;

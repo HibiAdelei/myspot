@@ -1,7 +1,8 @@
-const { spot } = require('../models');
+const { Spot } = require('../models');
 
 const spotData = [
     {
+        id: 1,
         title: "UCSD",
         latitude: 32.8802,
         longtitude: -117.2341,
@@ -10,6 +11,7 @@ const spotData = [
         user_id: 1
     },
     {
+        id: 2,
         title: "La Jolla Beach",
         latitude: 32.8571,
         longtitude: -117.2576,
@@ -18,6 +20,7 @@ const spotData = [
         user_id: 2
     },
     {
+        id: 3,
         title: "University of San Diego",
         latitude: 32.772,
         longtitude: -117.1882,
@@ -27,6 +30,6 @@ const spotData = [
     },
 ];
 
-const seedSpot = () => spot.bulkCreate(spotData);
+const seedSpot = () => Spot.bulkCreate(spotData);
 
 module.exports = seedSpot;
