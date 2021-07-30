@@ -29,3 +29,4 @@ Spot.belongsToMany(Tag, {
 
 
 module.exports = { User, Spot, Tag, SpotTag };
+
