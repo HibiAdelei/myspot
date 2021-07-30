@@ -20,18 +20,18 @@
                   {{!random Spot}}
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title">{{spot.title}}</h5>
-                    <p class="card-text">{{spot.description}}</p>
-                    <a href="/spot/{{spot.id}}" class="btn btn-primary">About this Spot:</a>
+                  <div id="map"></div>
+                  <h5 class="card-title">{{spot.title}}</h5>
+                  <a href="/spot/{{spot.id}}" class="btn btn-primary">View More</a>
                    
                     
                 </div>
             </div>
-          <h5 class= "text-center"><br>Spot pinned by: {{spot.User.username}}</h5>
+          <h5 class= "text-center"><br>Spot pinned by: {{spot.user.username}}</h5>
         </div>  
     </div></h1>
 
-    <h4 class="text-center">X Coordinates: {{spot.longitude}}&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp; Y Coordinates: {{spot.latitude}}<br></h4>
+    <h4 class="text-center">Longitude: {{spot.longitude}}&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp; Latitude: {{spot.latitude}}<br></h4>
 
       <div class="card mx-auto" style="width: 18rem;"> 
         <div class="card-body">
@@ -43,7 +43,11 @@
       <div class="card mx-auto" style="width: 18rem;">
         <div class="card-body">
           <h5 class="card-title">Tags: </h5>
-          <p class="card-text">{{spot.tags}}</p>
+          <ul class="card-text">
+          {{#each spot.tags as |tag|}}
+            <li>{{tag.tag_name}}</li>
+          {{/each}}
+          </ul>
         </div>    
       </div>   
    </div> 
