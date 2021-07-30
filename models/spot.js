@@ -61,3 +61,4 @@ Spot.init(
 
 module.exports = Spot;
 
+
