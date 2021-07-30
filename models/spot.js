@@ -22,7 +22,7 @@ Spot.init(
                 isDecimal: true
             }
         },
-        longtitude: {
+        longitude: {
             type: DataTypes.DECIMAL(10, 5),
             allowNull: false,
             validate: {
