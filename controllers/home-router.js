@@ -79,6 +79,10 @@ router.get("/profile/:id", async (req, res) => {
   }
 });
 
+router.get("/newspot"), withAuth, (req, res) => {};
+
+router.get("/spot/:id"), (req, res) => {};
+
 router.get("/login", (req, res) => {
   res.render("login", { title: "Log-In Page" });
 });
