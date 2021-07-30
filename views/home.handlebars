@@ -27,7 +27,7 @@
                     
                 </div>
             </div>
-          <h5 class= "text-center"><br>Spot pinned by: {{spot.User.username}}</h5>
+          <h5 class= "text-center"><br>Spot pinned by: {{spot.user.username}}</h5>
         </div>  
     </div></h1>
 
@@ -43,7 +43,11 @@
       <div class="card mx-auto" style="width: 18rem;">
         <div class="card-body">
           <h5 class="card-title">Tags: </h5>
-          <p class="card-text">{{spot.tags}}</p>
+          <p class="card-text">
+          {{#each tags as |tag|}}
+            {{tag.tag_name}} 
+          {{/each}}
+          </p>
         </div>    
       </div>   
    </div> 
