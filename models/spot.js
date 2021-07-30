@@ -1,0 +1,54 @@
+const { Model, DataTypes } = require('sequelize');
+const sequelize = require('../config/connection');
+
+class Spot extends Model { }
+
+Spot.init(
+    {
+        id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            primaryKey: true,
+            autoIncrement: true
+        },
+        title: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        latitude: {
+            type: DataTypes.DECIMAL(10.5),
+            allowNull: false,
+            validate: {
+                isDecimal: true
+            }
+        },
+        longtitude: {
+            type: DataTypes.DECIMAL(10.5),
+            allowNull: false,
+            validate: {
+                isDecimal: true
+            }
+        },
+        description: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        tag_id: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: "tag",
+                key: "id",
+                unique: "false"
+            }
+        }
+    },
+    {
+        sequelize,
+        timestamps: false,
+        freezeTableName: true,
+        underscored: true,
+        modelName: 'Spot',
+    }
+);
+
+module.exports = Spot;
