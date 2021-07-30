@@ -1,4 +1,4 @@
-const { tag } = require('../models');
+const { Tag } = require('../models');
 
 const tagData = [
     {
@@ -27,6 +27,6 @@ const tagData = [
     },
 ];
 
-const seedTags = () => tag.bulkCreate(tagData);
+const seedTags = () => Tag.bulkCreate(tagData);
 
 module.exports = seedTags;
