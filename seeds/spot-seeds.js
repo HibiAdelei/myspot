@@ -7,6 +7,7 @@ const spotData = [
         longtitude: -117.2341,
         description: "UCSD",
         tag_id: 1,
+        user_id: 1
     },
     {
         title: "La Jolla Beach",
@@ -14,6 +15,7 @@ const spotData = [
         longtitude: -117.2576,
         description: "Beach",
         tag_id: 2,
+        user_id: 2
     },
     {
         title: "University of San Diego",
@@ -21,6 +23,7 @@ const spotData = [
         longtitude: -117.1882,
         description: "USD",
         tag_id: 3,
+        user_id: 3
     },
 ];
 
