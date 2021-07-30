@@ -12,6 +12,7 @@ const withAuth = require("../util/withAuth");
 
 router.get("/", async (req, res) => {
   try {
+    // If logged in, return the user associated with this session
     let user;
     if (req.session.isLoggedIn) {
       user = await User.findByPk(req.session.userId, {
@@ -48,6 +49,7 @@ router.get("/", async (req, res) => {
     };
     console.log(data);
 
+    // Render the page
     res.render("home", data);
   } catch (error) {
     console.error(error);
@@ -105,9 +107,58 @@ router.get("/profile/:id", async (req, res) => {
   }
 });
 
-router.get("/newspot"), withAuth, (req, res) => {};
+router.get("/newspot"),
+  withAuth,
+  (req, res) => {
+    res.render("newspot");
+  };
 
-router.get("/spot/:id"), (req, res) => {};
+router.get("/spot/:id"),
+  async (req, res) => {
+    try {
+      let user;
+      if (req.session.isLoggedIn) {
+        user = await User.findByPk(req.session.userId, {
+          exclude: ["password"],
+          raw: true,
+        });
+      }
+
+      // Get a spot from sequelize
+      const spot = await Spot.findAll({
+        where: {
+          id: req.params.id,
+        },
+        include: [
+          {
+            model: User,
+            required: true,
+          },
+          {
+            model: Tag,
+            through: {
+              model: SpotTag,
+              attributes: [],
+            },
+            as: "tags",
+          },
+        ],
+      });
+
+      const data = {
+        title: "MySpot",
+        isLoggedIn: req.session.isLoggedIn,
+        user,
+        spot,
+      };
+      console.log(data);
+
+      res.render("spot", data);
+    } catch (error) {
+      console.error(error);
+      res.status(500).send("⛔ Uh oh! An unexpected error occurred.");
+    }
+  };
 
 router.get("/login", (req, res) => {
   res.render("login", { title: "Log-In Page" });
