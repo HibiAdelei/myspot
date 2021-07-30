@@ -4,47 +4,54 @@ const { User, Spot, Tag, SpotTag } = require("../models");
 // use withAuth middleware to redirect from protected routes.
 const withAuth = require("../util/withAuth");
 
-router.get("/:id"),
-  async (req, res) => {
-    try {
-      let user;
-      if (req.session.isLoggedIn) {
-        user = await User.findByPk(req.session.userId, {
-          exclude: ["password"],
-          raw: true,
-        });
-      }
+router.get("/", withAuth, async (req, res) => {
+  res.render("spot");
+});
 
-      // Get a spot from sequelize
-      const spot = await Spot.findByPk(req.params.id, {
-        include: [
-          {
-            model: User,
-            required: true,
-          },
-          {
-            model: Tag,
-            through: {
-              model: SpotTag,
-              attributes: [],
-            },
-            as: "tags",
-          },
-        ],
+router.get("/:id", async (req, res) => {
+  try {
+    let user;
+    if (req.session.isLoggedIn) {
+      user = await User.findByPk(req.session.userId, {
+        exclude: ["password"],
+        raw: true,
       });
-
-      const data = {
-        title: "MySpot",
-        isLoggedIn: req.session.isLoggedIn,
-        user,
-        spot,
-      };
-
-      res.render("spot", data);
-    } catch (error) {
-      console.error(error);
-      res.status(500).send("⛔ Uh oh! An unexpected error occurred.");
     }
-  };
+
+    // Get a spot from sequelize
+    const spotData = await Spot.findByPk(req.params.id, {
+      include: [
+        {
+          model: User,
+          required: true,
+        },
+        {
+          model: Tag,
+          through: {
+            model: SpotTag,
+            attributes: [],
+          },
+          as: "tags",
+        },
+      ],
+    });
+
+    // Serialize spot data
+    const spot = spotData.get({ plain: true });
+
+    const data = {
+      title: "MySpot",
+      isLoggedIn: req.session.isLoggedIn,
+      user,
+      spot,
+    };
+    console.log(data);
+
+    res.render("spot", data);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("⛔ Uh oh! An unexpected error occurred.");
+  }
+});
 
 module.exports = router;
