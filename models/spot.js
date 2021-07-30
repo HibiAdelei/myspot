@@ -16,22 +16,30 @@ Spot.init(
             allowNull: false,
         },
         latitude: {
-            type: DataTypes.DECIMAL(10.5),
+            type: DataTypes.DECIMAL(10, 5),
             allowNull: false,
             validate: {
                 isDecimal: true
             }
         },
         longtitude: {
-            type: DataTypes.DECIMAL(10.5),
+            type: DataTypes.DECIMAL(10, 5),
             allowNull: false,
             validate: {
                 isDecimal: true
             }
         },
         description: {
-            type: DataTypes.STRING,
+            type: DataTypes.TEXT,
             allowNull: false,
+        },
+        user_id: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: "user",
+                key: "id",
+                unique: "false"
+            }
         },
         tag_id: {
             type: DataTypes.INTEGER,
@@ -47,8 +55,9 @@ Spot.init(
         timestamps: false,
         freezeTableName: true,
         underscored: true,
-        modelName: 'Spot',
+        modelName: 'spot',
     }
 );
 
 module.exports = Spot;
+
