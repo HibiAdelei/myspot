@@ -14,6 +14,7 @@ Tag.init(
         },
         tag_name: {
             type: DataTypes.STRING,
+            allowNull: false
         }
     },
     {
@@ -26,3 +27,4 @@ Tag.init(
 );
 
 module.exports = Tag;
+
