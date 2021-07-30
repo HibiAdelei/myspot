@@ -1,21 +1,21 @@
 <div class="container-sm">
     <div class="text-center">
         {{#if matchesSessionUser}}
-            <button type="button" class="btn mx-auto btn-outline-danger logout-button">Logout</button>
+        <button type="button" class="btn mx-auto btn-outline-danger logout-button">Logout</button>
         {{/if}}
     </div>
     <h1 class="text-break">{{user.username}}'s Profile</h1>
     <h4>About</h4>
     <p>{{user.bio}}</p>
-    
+
     <h4>{{user.username}}'s Spots</h4>
     <div class="row justify-content-center">
         {{#each spots as |spot|}}
         <div class="col-sm-12 col-lg-6 my-2">
             <div class="card">
                 <div class="card-header">
-                    {{!-- TODO: Use maps.js to render this static Google Map --}}
-                    Static Google Maps
+                    <img width="600"
+                        src="https://maps.googleapis.com/maps/api/staticmap?center={{spot.latitude}},{{spot.longtitude}}&zoom=12&size=600×300&markers={{spot.latitude}},{{spot.longtitude}}">
                 </div>
                 <div class="card-body">
                     <h5 class="card-title">{{spot.title}}</h5>
