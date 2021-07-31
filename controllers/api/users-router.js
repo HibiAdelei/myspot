@@ -21,8 +21,29 @@ router.post("/", async (req, res) => {
   }
 });
 
-// TODO
-// router.update('/')
+// Update a user by ID
+router.update("/:id", async (req, res) => {
+  const { username, bio, password } = req.body;
+  try {
+    // User must be logged in and is same user as the one being updated
+    if (!req.session.isLoggedIn && req.session.usedId !== req.params.id) {
+      return res.status(403).json("User is not logged in.");
+    }
+    await User.update(
+      { username, bio, password },
+      {
+        where: {
+          id: req.params.id,
+        },
+      }
+    );
+
+    res.sendStatus(200);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal server error." });
+  }
+});
 
 router.post("/login", async (req, res) => {
   const { username, password } = req.body;

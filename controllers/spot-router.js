@@ -1,13 +1,15 @@
 const router = require("express").Router();
-const Sequelize = require("sequelize");
 const { User, Spot, Tag, SpotTag } = require("../models");
 
 // use withAuth middleware to redirect from protected routes.
 const withAuth = require("../util/withAuth");
 
-router.get("/", async (req, res) => {
+router.get("/", withAuth, async (req, res) => {
+  res.render("spot");
+});
+
+router.get("/:id", async (req, res) => {
   try {
-    // If logged in, return the user associated with this session
     let user;
     if (req.session.isLoggedIn) {
       user = await User.findByPk(req.session.userId, {
@@ -16,10 +18,8 @@ router.get("/", async (req, res) => {
       });
     }
 
-    // Get a random spot from sequelize
-    const spotData = await Spot.findAll({
-      order: Sequelize.literal("rand()"),
-      limit: 1,
+    // Get a spot from sequelize
+    const spotData = await Spot.findByPk(req.params.id, {
       include: [
         {
           model: User,
@@ -35,8 +35,9 @@ router.get("/", async (req, res) => {
         },
       ],
     });
+
     // Serialize spot data
-    const spot = spotData[0].get({ plain: true });
+    const spot = spotData.get({ plain: true });
 
     const data = {
       title: "MySpot",
@@ -46,26 +47,11 @@ router.get("/", async (req, res) => {
     };
     console.log(data);
 
-    // Render the page
-    res.render("home", data);
+    res.render("spot", data);
   } catch (error) {
     console.error(error);
     res.status(500).send("⛔ Uh oh! An unexpected error occurred.");
   }
-});
-
-router.get("/newspot"),
-  withAuth,
-  (req, res) => {
-    res.render("newspot");
-  };
-
-router.get("/login", (req, res) => {
-  res.render("login", { title: "Log-In Page" });
-});
-
-router.get("/signup", (req, res) => {
-  res.render("signup", { title: "Sign-Up Page" });
 });
 
 module.exports = router;
