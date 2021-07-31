@@ -22,7 +22,7 @@ router.post("/", async (req, res) => {
 });
 
 // Update a user by ID
-router.update("/:id", async (req, res) => {
+router.put("/:id", async (req, res) => {
   const { username, bio, password } = req.body;
   try {
     // User must be logged in and is same user as the one being updated
