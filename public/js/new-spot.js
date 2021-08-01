@@ -10,6 +10,7 @@ const newSpotHandler = async function (event) {
   const selectedTags = document.getElementById('tags').selectedOptions;
   const tags = Array.from(selectedTags).map(({ value }) => value);
 
+  // Create a fetch request to post a new spot
   const newSpot = await fetch('/api/spot', {
     method: 'POST',
     body: JSON.stringify({
