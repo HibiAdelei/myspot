@@ -1,20 +1,33 @@
 <div class="container-sm">
     <div class="text-center">
         {{#if matchesSessionUser}}
-        <button type="button" class="btn mx-auto btn-outline-danger logout-button">Logout</button>
+            <button type="button" class="btn mx-auto btn-outline-danger logout-button">Logout</button>
         {{/if}}
     </div>
     <h1 class="text-break">{{user.username}}'s Profile</h1>
     <h4>About</h4>
-    <p>{{user.bio}}</p>
-
+    <div class="bio">
+        {{#if matchesSessionUser}}
+            <form class="bio-form">
+                <div class="form-group">
+                    <label for="User Bio"></label>
+                    <textarea class="form-control" id="user-bio-text" rows="4">{{user.bio}}</textarea>
+                </div>
+                    <button type="submit" class="btn btn-outline-info">Save</button>
+            </form>
+        {{else}}
+            <p>{{user.bio}}</p>
+        {{/if}}
+    </div>
+    
     <h4>{{user.username}}'s Spots</h4>
     <div class="row justify-content-center">
         {{#each spots as |spot|}}
         <div class="col-sm-12 col-lg-6 my-2">
             <div class="card">
                 <div class="card-header">
-                    <img width="600" src="https://maps.googleapis.com/maps/api/staticmap?center={{spot.latitude}},{{spot.longitude}}&zoom=12&size=600x400&key=AIzaSyBeNBJQ5Gza1b_PNxX1_B4CKUcz6t9mozM&markers=color:red%7Clabel:%7C{{spot.latitude}},{{spot.longitude}}">
+                    {{!-- TODO: Use maps.js to render this static Google Map --}}
+                    Static Google Maps
                 </div>
                 <div class="card-body">
                     <h5 class="card-title">{{spot.title}}</h5>
@@ -26,3 +39,5 @@
         {{/each}}
     </div>
 </div>
+
+<script src='/js/profile.js'></script>
