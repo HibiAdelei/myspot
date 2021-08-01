@@ -1,0 +1,28 @@
+<div class="container-sm">
+  <div class="row justify-content-center">
+    <div class="col-sm-12 col-lg-6 my-2">
+      <div class="card">
+        <div class="h1 text-center">Spot Details</div>
+        <div class="card-header" id="staticmap" data-longitude={{spot.longitude}} data-latitude={{spot.latitude}}>
+        </div>
+        <div class="card-body">
+          <h2 class="card-title">{{spot.title}}</h2>
+          <h5 class="card-title">Spot pinned by: {{spot.user.username}}</h5>
+          <p class="card-text">{{spot.description}}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Longitude: {{spot.longitude}}</li>
+          <li class="list-group-item">Latitude: {{spot.latitude}}</li>
+          <li class="list-group-item">Tags: 
+            <ul class="card-text">
+              {{#each spot.tags as |tag|}}
+              <li>{{tag.tag_name}}</li>
+              {{/each}}
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="/js/map.js"></script>

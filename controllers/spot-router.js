@@ -1,19 +1,15 @@
-const router = require("express").Router();
-const { User, Spot, Tag, SpotTag } = require("../models");
+const router = require('express').Router();
+const { User, Spot, Tag, SpotTag } = require('../models');
 
 // use withAuth middleware to redirect from protected routes.
-const withAuth = require("../util/withAuth");
+const withAuth = require('../util/withAuth');
 
-router.get("/", withAuth, async (req, res) => {
-  res.render("spot");
-});
-
-router.get("/:id", async (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
     let user;
     if (req.session.isLoggedIn) {
       user = await User.findByPk(req.session.userId, {
-        exclude: ["password"],
+        exclude: ['password'],
         raw: true,
       });
     }
@@ -31,7 +27,7 @@ router.get("/:id", async (req, res) => {
             model: SpotTag,
             attributes: [],
           },
-          as: "tags",
+          as: 'tags',
         },
       ],
     });
@@ -40,17 +36,17 @@ router.get("/:id", async (req, res) => {
     const spot = spotData.get({ plain: true });
 
     const data = {
-      title: "MySpot",
+      title: 'MySpot',
       isLoggedIn: req.session.isLoggedIn,
       user,
       spot,
     };
     console.log(data);
 
-    res.render("spot", data);
+    res.render('spot', data);
   } catch (error) {
     console.error(error);
-    res.status(500).send("⛔ Uh oh! An unexpected error occurred.");
+    res.status(500).send('⛔ Uh oh! An unexpected error occurred.');
   }
 });
 
