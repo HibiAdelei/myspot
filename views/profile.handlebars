@@ -13,9 +13,8 @@
         {{#each spots as |spot|}}
         <div class="col-sm-12 col-lg-6 my-2">
             <div class="card">
-                <div class="card-header">
-                    <img width="600" src="https://maps.googleapis.com/maps/api/staticmap?center={{spot.latitude}},{{spot.longitude}}&zoom=12&size=600x400&key=AIzaSyBeNBJQ5Gza1b_PNxX1_B4CKUcz6t9mozM&markers=color:red%7Clabel:%7C{{spot.latitude}},{{spot.longitude}}">
-                </div>
+                <div class="card-header" id="staticmap" data-longitude={{spot.longitude}}
+                    data-latitude={{spot.latitude}}></div>
                 <div class="card-body">
                     <h5 class="card-title">{{spot.title}}</h5>
                     <p class="card-text">{{spot.description}}</p>
