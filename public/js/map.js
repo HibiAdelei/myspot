@@ -34,3 +34,14 @@ function placeMarker(map, location) {
     document.getElementById('longtitude').value = Math.round(location.lng() * 10000) / 10000;
     infowindow.open(map, marker);
 }
+
+function renderStaticMap() {
+    document.getElementById("staticmap").innerHTML +=
+        "<img width='100%' src='https://maps.googleapis.com/maps/api/staticmap?center=" + staticmap.dataset.latitude + "," + staticmap.dataset.longitude + "&zoom=12&size=600x400&key=AIzaSyBeNBJQ5Gza1b_PNxX1_B4CKUcz6t9mozM&markers=color:red%7Clabel:%7C" + staticmap.dataset.latitude + "," + staticmap.dataset.longitude + "'></img>";
+}
+renderStaticMap();
+
+
+
+
+
