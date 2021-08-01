@@ -11,7 +11,7 @@ router.post('/', async (req, res) => {
     // Create a new spot
     const newSpot = await Spot.create({
       ...newSpotAttributes,
-      user_id: req.session.user_id,
+      user_id: req.session.userId,
     });
 
     // if there's tags, we need to create pairings to bulk create in the SpotTag model
