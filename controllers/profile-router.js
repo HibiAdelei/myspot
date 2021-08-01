@@ -54,7 +54,6 @@ router.get('/:id', async (req, res) => {
       spots: userSpots,
       matchesSessionUser,
     };
-    console.log(data);
 
     res.render('profile', data);
   } catch (error) {
