@@ -53,8 +53,15 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/newspot', withAuth, (req, res) => {
-  res.render('newspot');
+router.get('/newspot', withAuth, async (req, res) => {
+  // Fetch all tags from the database
+  const tagData = await Tag.findAll();
+  const tags = tagData.map((item) => item.dataValues);
+
+  res.render('newspot', {
+    isLoggedIn: req.session.isLoggedIn,
+    tags,
+  });
 });
 
 router.get('/login', (req, res) => {

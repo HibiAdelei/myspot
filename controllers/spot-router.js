@@ -41,7 +41,6 @@ router.get('/:id', async (req, res) => {
       user,
       spot,
     };
-    console.log(data);
 
     res.render('spot', data);
   } catch (error) {
