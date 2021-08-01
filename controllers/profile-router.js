@@ -49,6 +49,7 @@ router.get('/:id', async (req, res) => {
 
     const data = {
       title: `${user.username}'s Profile`,
+      isLoggedIn: req.session.isLoggedIn,
       user,
       spots: userSpots,
       matchesSessionUser,
