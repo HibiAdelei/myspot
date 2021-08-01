@@ -14,6 +14,8 @@ function myMap() {
     });
 }
 
+myMap();
+
 function placeMarker(map, location) {
     if (!marker || !marker.setPosition) {
         marker = new google.maps.Marker({
@@ -31,7 +33,7 @@ function placeMarker(map, location) {
 
     });
     document.getElementById('latitude').value = Math.round(location.lat() * 10000) / 10000;
-    document.getElementById('longtitude').value = Math.round(location.lng() * 10000) / 10000;
+    document.getElementById('longitude').value = Math.round(location.lng() * 10000) / 10000;
     infowindow.open(map, marker);
 }
 
