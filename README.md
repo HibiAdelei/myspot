@@ -39,7 +39,7 @@
     - To make a new spot, you must be signed up and logged in.
     - When you click a spot to save, latitude and longitude appears automatically, then you type title, description and tags of the spot.
 
-![usagevideo](./asset/myspot-trial-video.gif)
+![usagevideo](./assets/myspot-trial-video.gif)
 
 ## Technologies:  
 -   [Google Map API](https://developers.google.com/maps)
