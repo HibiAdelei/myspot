@@ -49,19 +49,24 @@ function initMap() {
   });
 }
 
+// Create a static, non-interactable map using the Google Maps API
+// Uses the data-latitude and data-longitude attributes for coordinates
 function renderStaticMap() {
-  const staticMap = document.querySelector('#staticmap');
-  if (staticMap) {
-    staticMap.innerHTML +=
-      "<img width='100%' src='https://maps.googleapis.com/maps/api/staticmap?center=" +
-      staticmap.dataset.latitude +
-      ',' +
-      staticmap.dataset.longitude +
-      '&zoom=12&size=600x400&key=AIzaSyBeNBJQ5Gza1b_PNxX1_B4CKUcz6t9mozM&markers=color:red%7Clabel:%7C' +
-      staticmap.dataset.latitude +
-      ',' +
-      staticmap.dataset.longitude +
-      "'></img>";
+  const staticMaps = document.getElementsByClassName('static-google-map');
+  if (staticMaps) {
+    for (let i = 0; i < staticMaps.length; i++) {
+      const staticMap = staticMaps[i];
+      staticMap.innerHTML +=
+        "<img width='100%' src='https://maps.googleapis.com/maps/api/staticmap?center=" +
+        staticMap.dataset.latitude +
+        ',' +
+        staticMap.dataset.longitude +
+        '&zoom=12&size=600x400&key=AIzaSyBeNBJQ5Gza1b_PNxX1_B4CKUcz6t9mozM&markers=color:red%7Clabel:%7C' +
+        staticMap.dataset.latitude +
+        ',' +
+        staticMap.dataset.longitude +
+        "'></img>";
+    }
   }
 }
 renderStaticMap();
