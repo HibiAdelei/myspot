@@ -1,19 +1,5 @@
 <h1 class="text-break text-center">MySpot</h1>
-<h1>
-  <div class="container-sm">
-    <div class="text-center">
-      {{!-- {{#if matchesSessionUser}}
-
-      {{/if}} --}}
-      <button type="button" class="btn mx-auto btn-outline-danger logout-button" href='/home'>Home</button>
-      {{#if isLoggedIn}}
-      <button type="button" class="btn mx-auto btn-outline-danger logout-button" href='/newspot'>+ New Spot</button>
-      <button type="button" class="btn mx-auto btn-outline-danger logout-button" href='/profile'>My Spots</button>
-      <button type="button" class="btn mx-auto btn-outline-danger logout-button" href='/logout'>Logout</button>
-      {{/if}}
-    </div>
-
-
+<h1><div class="container-sm">     
     <div class="row justify-content-center">
       <div class="col-sm-12 col-lg-6 my-2">
         <div class="card">
@@ -23,25 +9,20 @@
             <div id="map"></div>
             <h5 class="card-title">{{spot.title}}</h5>
             <a href="/spot/{{spot.id}}" class="btn btn-primary">View More</a>
-
-
           </div>
         </div>
         <h5 class="text-center"><br>Spot pinned by: {{spot.user.username}}</h5>
       </div>
     </div>
 </h1>
-
 <h4 class="text-center">Longitude: {{spot.longitude}}&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp; Latitude:
   {{spot.latitude}}<br></h4>
-
 <div class="card mx-auto" style="width: 18rem;">
   <div class="card-body">
     <h5 class="card-title">Description: </h5>
     <p class="card-text">{{spot.description}}</p>
   </div>
 </div>
-
 <div class="card mx-auto" style="width: 18rem;">
   <div class="card-body">
     <h5 class="card-title">Tags: </h5>
@@ -54,9 +35,3 @@
 </div>
 </div>
 <script src='/js/map.js'></script>
-
-
-{{#unless isLoggedIn}}
-<br />
-<a class='btn' href='/signup'>Sign Up</a>
-{{/unless}}
