@@ -24,7 +24,7 @@ User.init(
     },
     bio: {
       type: DataTypes.TEXT,
-      allowNull: false,
+     
     },
     password: {
       type: DataTypes.STRING,
